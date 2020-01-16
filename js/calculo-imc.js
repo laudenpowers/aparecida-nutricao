@@ -63,6 +63,12 @@ var btnAdicionar = document.querySelector("#adicionar-paciente");
 btnAdicionar.addEventListener("click", function (event){
 	event.preventDefault();
 	console.log("Botão clicado");
+	var form = document.querySelector("#form-adiciona");
+	console.log(form.nome.value);
+	var nome = form.nome.value;
+	var peso = form.peso.value;
+	var altura = form.altura.value;
+	var gordura = form.gordura.value;
 });
 
 titulo.addEventListener("click", showMsg);
