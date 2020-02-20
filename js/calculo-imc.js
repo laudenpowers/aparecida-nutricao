@@ -39,26 +39,46 @@ for (var i = 0; i < pacientes.length; i++){
 
 	var tdImc = paciente.querySelector(".info-imc");
 
-	if (peso <= 0 || peso >= 1000){
+	if (!isPesoValido(peso)){
 		console.log("Peso inválido");
 		tdImc.textContent = "Peso inválido";
 		paciente.classList.add("paciente-invalido");
 		//paciente.style.color = "white";
 		//paciente.style.backgroundColor = "lightcoral";
-	} else if (altura <= 0 || altura >= 3){
+	} else if (!isAlturaValida(altura)){
 		console.log("Altura inválida");
 		tdImc.textContent = "Altura inválida";
 		paciente.classList.add("paciente-invalido");
 		//paciente.style.color = "white";
 		//paciente.style.backgroundColor = "lightcoral";
 	} else {
-		var imc = peso / (altura * altura);
+		var imc = calcularImc(peso, altura);
 		console.log(imc);
-		tdImc.textContent = imc.toFixed(2);
+		tdImc.textContent = imc;
 	}
 	
 }	
 
+function isPesoValido(peso){
+	if (peso > 0 && peso < 500){
+		return true;
+	}
+	return false;
+}
+
+function isAlturaValida(altura){
+	if (altura > 0 && altura < 3){
+		return true;
+	}	
+	return false;
+}
+
+function calcularImc(peso, altura){
+	var imc = 0;
+	imc = peso / (altura * altura);
+	return imc.toFixed(2);;
+}
+	
 var btnAdicionar = document.querySelector("#adicionar-paciente");
 btnAdicionar.addEventListener("click", function (event){
 	event.preventDefault();
